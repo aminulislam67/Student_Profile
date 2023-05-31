@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Student Management System</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+</head>
+<body>
+  <div class="container mt-4">
+    <h1>Student Management System</h1>
+
+    <form id="searchForm" class="mt-4">
+      <div class="form-row">
+        <div class="col-md-4 mb-3">
+          <label for="searchId">Search by ID:</label>
+          <input type="text" class="form-control" id="searchId">
+        </div>
+        <div class="col-md-4 mb-3">
+          <label for="searchName">Search by Name:</label>
+          <input type="text" class="form-control" id="searchName">
+        </div>
+      </div>
+      <button type="submit" class="btn btn-primary">Search</button>
+    </form>
+
+    <table id="studentTable" class="table mt-4">
+      <thead>
+        <tr>
+          <th>Serial Number</th>
+          <th>ID</th>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th>Email</th>
+          <th>Group</th>
+          <th>Admission Date</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody id="studentTableBody"></tbody>
+    </table>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+  <script src="displayscript.js"></script>
+</body>
+</html>

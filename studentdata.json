@@ -1,0 +1,26 @@
+[
+    {
+        "firstName": "Aminul",
+        "lastName": "Islam",
+        "studentId": "11",
+        "email": "aminulislam21123@gmail.com",
+        "group": "Science",
+        "admissionDate": "2023-05-15"
+    },
+    {
+        "firstName": "Aminul",
+        "lastName": "Islam",
+        "studentId": "12",
+        "email": "aminulislam21123@gmail.com",
+        "group": "commerce",
+        "admissionDate": "2023-05-17"
+    },
+    {
+        "firstName": "Ezio",
+        "lastName": "Auditore",
+        "studentId": "13",
+        "email": "md.aminul.islam2@g.bracu.ac.bd",
+        "group": "Science",
+        "admissionDate": "2023-05-18"
+    }
+]

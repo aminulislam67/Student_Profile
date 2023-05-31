@@ -1,1 +1,32 @@
-[{"firstName":"Aminul","lastName":"Islam","email":"aminulislam21123@gmail.com","phone":"01303522687","gender":"male","dob":"2023-05-01","username":"aminul321","password":"1212"},{"firstName":"Ezio","lastName":"Auditore","email":"md.aminul.islam2@g.bracu.ac.bd","phone":"01676766541","gender":"male","dob":"2023-05-01","username":"aminul","password":"1212"},{"firstName":"Lio","lastName":"messi","email":"aminulislam21123@gmail.com","phone":"01303522687","gender":"male","dob":"2023-05-02","username":"am","password":"2222"}]
+[
+    {
+        "firstName": "Aminul",
+        "lastName": "Islam",
+        "email": "aminulislam21123@gmail.com",
+        "phone": "01303522687",
+        "gender": "male",
+        "dob": "2023-05-01",
+        "username": "aminul321",
+        "password": "1212"
+    },
+    {
+        "firstName": "Ezio",
+        "lastName": "Auditore",
+        "email": "md.aminul.islam2@g.bracu.ac.bd",
+        "phone": "01676766541",
+        "gender": "male",
+        "dob": "2023-05-01",
+        "username": "aminul",
+        "password": "1212"
+    },
+    {
+        "firstName": "Lio",
+        "lastName": "messi",
+        "email": "aminulislam21123@gmail.com",
+        "phone": "01303522687",
+        "gender": "male",
+        "dob": "2023-05-02",
+        "username": "am",
+        "password": "2222"
+    }
+]
