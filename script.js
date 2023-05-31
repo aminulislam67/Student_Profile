@@ -1,59 +1,59 @@
-document.getElementById("registrationForm").addEventListener("submit", function(event) {
-  event.preventDefault();
+$(document).ready(function() {
+  $('#registrationForm').submit(function(event) {
+    event.preventDefault(); // Prevent form submission
 
+    // Retrieve form values
+    var username = $('#username').val();
+    var password = $('#password').val();
+    var firstName = $('#firstName').val();
+    var lastName = $('#lastName').val();
+    var email = $('#email').val();
+    var phone = $('#phone').val();
+    var gender = $('#gender').val();
+    var dob = $('#dob').val();
 
-  var firstName = document.getElementById("firstName").value;
-  var lastName = document.getElementById("lastName").value;
-  var email = document.getElementById("email").value;
-  var phone = document.getElementById("phone").value;
-  var gender = document.getElementById("gender").value;
-  var dob = document.getElementById("dob").value;
-  var password = document.getElementById("password").value;
-
-  // Create student object
-  var student = {
+    // Create an object for the new user
+    var newUser = {
       firstName: firstName,
       lastName: lastName,
       email: email,
       phone: phone,
       gender: gender,
       dob: dob,
-      password: password
-  };
+      username: username,
+      password: password,
+    };
 
-  // Save student data to JSON file
-  saveStudentData(student);
-  alert("Registration successful!");
+    // Retrieve existing users from localStorage or initialize an empty array
+    var existingUsers = localStorage.getItem('users');
+    var users = existingUsers ? JSON.parse(existingUsers) : [];
 
-  // Reset form
-  document.getElementById("registrationForm").reset();
+    // Check if the username already exists
+    var usernameExists = users.some(function(user) {
+      return user.username === username;
+    });
+
+    if (usernameExists) {
+      alert('Username already exists. Please choose a different username.');
+    } else {
+      // Add the new user to the array
+      users.push(newUser);
+
+      // Save the updated users array to localStorage
+      localStorage.setItem('users', JSON.stringify(users));
+
+      // Download the JSON file with the updated users data
+      var jsonData = JSON.stringify(users);
+      var blob = new Blob([jsonData], { type: 'application/json' });
+      var url = URL.createObjectURL(blob);
+      var link = document.createElement('a');
+      link.href = url;
+      link.download = 'registrationdata.json';
+      link.click();
+
+      alert('Registration successful!');
+      // Clear the form after successful registration
+      $('#registrationForm')[0].reset();
+    }
+  });
 });
-
-function saveStudentData(student) {
-  // Retrieve existing data or initialize an empty array if it doesn't exist
-  var jsonData = localStorage.getItem("user");
-  var user = jsonData ? JSON.parse(jsonData) : [];
-
-  // Add the new student to the array
-  user.push(student);
-
-  // Save the updated array in local storage
-  localStorage.setItem("user", JSON.stringify(user));
-
-  // Save the JSON file
-  downloadJSONFile(user);
-}
-
-function downloadJSONFile(user) {
-  var jsonData = JSON.stringify(user);
-  var file = new Blob([jsonData], {type: "application/json"});
-
-  var a = document.createElement("a");
-  var url = URL.createObjectURL(file);
-  a.href = url;
-  a.download = "student_data.json";
-  document.body.appendChild(a);
-  a.click();
-  document.body.removeChild(a);
-  URL.revokeObjectURL(url);
-}
