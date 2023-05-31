@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Registration System</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 10px;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="password"] {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 20px;
+    }
+
+    button {
+      padding: 10px 20px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+
+    .message {
+      margin-top: 20px;
+      padding: 10px;
+      background-color: #f2f2f2;
+      border: 1px solid #ddd;
+    }
+  </style>
+</head>
+<body>
+  <h1>Registration System</h1>
+
+  <form id="registrationForm">
+    <label for="name">Name:</label>
+    <input type="text" id="name" required>
+
+    <label for="email">Email:</label>
+    <input type="email" id="email" required>
+
+    <label for="password">Password:</label>
+    <input type="password" id="password" required>
+
+    <button type="submit">Register</button>
+  </form>
+
+  <div id="message" class="message" style="display: none;"></div>
+
+  <script>
+    document.getElementById("registrationForm").addEventListener("submit", function(event) {
+      event.preventDefault();
+
+      var name = document.getElementById("name").value;
+      var email = document.getElementById("email").value;
+      var password = document.getElementById("password").value;
+
+      var data = {
+        name: name,
+        email: email,
+        password: password
+      };
+
+      var jsonData = JSON.stringify(data, null, 2);
+      var fileName = "registration.json";
+
+      if (window.File && window.FileReader && window.FileList && window.Blob) {
+        // Check if the File System API is supported
+
+        var file = new Blob([jsonData], { type: "application/json" });
+
+        window.requestFileSystem = window.requestFileSystem || window.webkitRequestFileSystem;
+
+        window.requestFileSystem(window.TEMPORARY, 5 * 1024 * 1024, function(fs) {
+          fs.root.getFile(fileName, { create: true }, function(fileEntry) {
+            fileEntry.createWriter(function(fileWriter) {
+              fileWriter.onwriteend = function() {
+                document.getElementById("message").innerText = "Registration data has been saved.";
+                document.getElementById("message").style.display = "block";
+              };
+
+              fileWriter.onerror = function() {
+                console.error("Error writing file.");
+              };
+
+              fileWriter.write(file);
+            }, errorHandler);
+          }, errorHandler);
+        }, errorHandler);
+      } else {
+        console.error("File System API is not supported.");
+      }
+    });
+
+    function errorHandler(error) {
+      console.error("Error accessing file system:", error);
+    }
+  </script>
+</body>
+</html>
